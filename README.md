@@ -5,13 +5,16 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Versions
+    * Ruby version 3.0.3p157
+    * Rails version 7.0.0
 
 * System dependencies
 
 * Configuration
 
 * Database creation
+    * `rake db:create`
 
 * Database initialization
 
