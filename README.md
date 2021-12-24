@@ -10,6 +10,9 @@ Things you may want to cover:
     * Rails version 7.0.0
 
 * System dependencies
+    * mysql2
+    * graphql
+    * graphiql-rails
 
 * Configuration
 
@@ -24,4 +27,17 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+* Commands
+    * `gem update --system`
+    * `sudo service mysql restart`
+    * `rake db:create`
+    * `rails g model Product product_category:belongs_to name:string description:string`
+    * `rails g model ProductCategory name:string description:string`
+    * `rails db:migrate`
+    * `rails g graphql:install`
+    * `bundle install`
+    * `rake db:reset db:seed`
+    * `rails g graphql:object product_category`
+    * `rails g graphql:object product`
+    * `rails g graphql:mutation CreateProductCategoryMutation`
+    * `rails g graphql:mutation CreateProductMutation`
