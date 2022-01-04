@@ -5,7 +5,9 @@ module Types
     include GraphQL::Types::Relay::HasNodesField
 
     # Product
-    field :products, [Types::ProductType], null: false
+    field :products, [Types::ProductType], null: false do
+      description 'Find all products'
+    end
 
     def products
       Product.all
@@ -13,6 +15,7 @@ module Types
 
     field :product, Types::ProductType, null: false do
       argument :id, ID, required: true
+      description 'Find a product by ID'
     end
 
     def product(id:)
@@ -20,7 +23,9 @@ module Types
     end
 
     # ProductCategory
-    field :product_categories, [Types::ProductCategoryType], null: false
+    field :product_categories, [Types::ProductCategoryType], null: false do
+      description 'Find all ProductCategories'
+    end
 
     def product_categories
       ProductCategory.all
@@ -28,6 +33,7 @@ module Types
 
     field :product_category, Types::ProductCategoryType, null: false do
       argument :id, ID, required: true
+      description 'Find a ProductCategories by ID'
     end
 
     def product_category(id:)

@@ -17,7 +17,9 @@ Things you may want to cover:
 * Configuration
 
 * Database creation
+    * `sudo service mysql restart`
     * `rake db:create`
+    * `rake db:reset db:seed`
 
 * Database initialization
 
@@ -28,16 +30,57 @@ Things you may want to cover:
 * Deployment instructions
 
 * Commands
-    * `gem update --system`
-    * `sudo service mysql restart`
-    * `rake db:create`
-    * `rails g model Product product_category:belongs_to name:string description:string`
-    * `rails g model ProductCategory name:string description:string`
-    * `rails db:migrate`
-    * `rails g graphql:install`
-    * `bundle install`
-    * `rake db:reset db:seed`
-    * `rails g graphql:object product_category`
-    * `rails g graphql:object product`
-    * `rails g graphql:mutation CreateProductCategoryMutation`
-    * `rails g graphql:mutation CreateProductMutation`
+    * Updates
+        * `gem update --system`
+    * Installing GraphQL
+        * `rails g graphql:install`
+        * `bundle install`
+    * Adding new models & GraphQL objects/mutations
+        * ProductCategory
+            * `rails g model ProductCategory name:string description:string`
+            * `rails g graphql:object product_category`
+            * `rails g graphql:mutation CreateProductCategoryMutation`
+            * `rails db:migrate`
+        * Product
+            * `rails g model Product product_category:belongs_to name:string description:string`
+            * `rails g graphql:object product`
+            * `rails g graphql:mutation CreateProductMutation`
+            * `rails db:migrate`
+        * User
+            * `rails g model User name email password_digest`
+            * `rails g graphql:object UserType id:ID! name:String! email:String!`
+            * `rails g graphql:mutation CreateUser`
+            * `rails db:migrate`
+
+* Mutations & Output
+    * CreateProductCategory
+    * CreateProduct
+    * CreateUser
+    ```json
+    mutation {
+        createUser(input: {
+            name: "Ariel Test",
+            authProvider: {
+                credentials: {
+                    email: "ariel.sashcov@gmail.com",
+                    password: "123456"
+                }
+            }
+        }) {
+            id
+            name
+            email
+        }
+    }
+    ```
+    ```json
+    {
+        "data": {
+            "createUser": {
+            "id": "1",
+            "name": "Ariel Test",
+            "email": "ariel.sashcov@gmail.com"
+            }
+        }
+    }
+    ```
