@@ -40,6 +40,23 @@ module Types
       ProductCategory.find(id)
     end
 
+    Warehouse
+    field :warehouses, [Types::WarehouseType], null: false do
+      description 'Find all WarehouseType'
+    end
+
+    def warehouses
+      Warehouse.all
+    end
+
+    field :warehouse, Types::WarehouseType, null: false do
+      argument :id, ID, required: true
+      description 'Find a Warehouse by ID'
+    end
+
+    def warehouse(id:)
+      Warehouse.find(id)
+    end
 
   end
 end
