@@ -1,9 +1,18 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is my attempt of the [Shopify Backend Developer Intern Challenge - Summer 2022](https://docs.google.com/document/d/1z9LZ_kZBUbg-O2MhZVVSqTmvDko5IJWHtuFmIu_Xg1A/edit).
 
-Things you may want to cover:
+In this README you will find all technical documentation including features and how to query the mysql database via graphql.
+
+This document is divided in three sections :
+
+[Information](#information)
+
+[Click here for the Sample GraphQL Queries](#sample-graphql-queries)
+
+[Click here for the Model Architecture Overview](#model-architecture)
+
+## Information
 
 - Versions
 
@@ -18,19 +27,17 @@ Things you may want to cover:
 
 - Configuration
 
-- Database creation
+  - Change mysql username and password `config\database.yml`
+
+- Database creation & initialization
 
   - `sudo service mysql restart`
   - `rake db:create`
   - `rake db:reset db:seed`
 
-- Database initialization
-
 - How to run the test suite
 
-- Services (job queues, cache servers, search engines, etc.)
-
-- Deployment instructions
+  - `rails test`
 
 - Commands
 
@@ -40,6 +47,11 @@ Things you may want to cover:
     - `rails g graphql:install`
     - `bundle install`
   - Adding new models & GraphQL objects/mutations
+    - Warehouse
+    - `rails g model Warehouse name email password_digest`
+    - `rails g graphql:object WarehouseType id:ID! name:String! email:String!`
+    - `rails g graphql:mutation CreateWarehouse`
+    - `rails db:migrate`
     - ProductCategory
       - `rails g model ProductCategory name:string description:string`
       - `rails g graphql:object product_category`
@@ -57,6 +69,12 @@ Things you may want to cover:
       - `rails db:migrate`
 
 ## Sample GraphQL Queries
+
+### Navigate to /graphiql to try them out!
+
+#### User login and sign up
+
+_Note : For the sake of this demo, a user does **NOT** need to be logged in to perform any other queries._
 
 Creates a new user:
 
@@ -95,3 +113,180 @@ mutation {
   }
 }
 ```
+
+#### Warehouse list, creation & deletion
+
+Creates a new Warehouse:
+
+```graphql
+mutation {
+  createWarehouse(
+    input: {
+      name: "Bloomfields inc."
+      description: "Straight Razors warehouse"
+    }
+  ) {
+    warehouse {
+      id
+      name
+      description
+    }
+  }
+}
+```
+
+Deletes a Warehouse:
+
+```graphql
+
+```
+
+Get all warehouses, products and productCount:
+
+```graphql
+query {
+  warehouses {
+    id
+    name
+    description
+    productCount
+    products {
+      name
+    }
+  }
+}
+```
+
+Get a warehouse by ID
+
+```graphql
+query {
+  warehouse(id: 1) {
+    name
+    description
+    productCount
+  }
+}
+```
+
+#### ProductCategory list, creation & deletion
+
+Creates a new ProductCategory:
+
+```graphql
+mutation {
+  createProductCategoryMutation(
+    input: { name: "Straight Razors", description: "Straight razor blades" }
+  ) {
+    productCategory {
+      id
+      name
+      description
+    }
+  }
+}
+```
+
+Deletes a ProductCategory:
+
+```graphql
+
+```
+
+Get all ProductCategory and their products:
+
+```graphql
+query {
+  productCategories {
+    id
+    name
+    description
+    products {
+      id
+      name
+      description
+    }
+  }
+}
+```
+
+Get ProductCategory by ID
+
+```graphql
+query {
+  productCategory(id: 1) {
+    name
+    description
+    products {
+      name
+      description
+    }
+  }
+}
+```
+
+#### Product list, creation, deletion & association
+
+Creates a new Product:
+
+```graphql
+mutation {
+  createProductMutation(
+    input: {
+      name: "Air Shear (6-Inch)"
+      description: "The Texpert Collective"
+      productCategoryId: 1
+      warehouseId: 1
+    }
+  ) {
+    product {
+      id
+      name
+      description
+    }
+  }
+}
+```
+
+Deletes a Product:
+
+```graphql
+
+```
+
+Change ProductCategory:
+
+```graphql
+
+```
+
+Change Warehouse:
+
+```graphql
+
+```
+
+Get all ProductCategory and their products:
+
+```graphql
+query {
+  products {
+    id
+    name
+    description
+  }
+}
+```
+
+Get ProductCategory by ID
+
+```graphql
+query {
+  product(id: 1) {
+    name
+    description
+  }
+}
+```
+
+## Model Architecture
