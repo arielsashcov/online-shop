@@ -141,6 +141,12 @@ Deletes a Warehouse:
 
 ```
 
+Updates a Warehouse:
+
+```graphql
+
+```
+
 Get all warehouses, products and productCount:
 
 ```graphql
@@ -188,6 +194,12 @@ mutation {
 ```
 
 Deletes a ProductCategory:
+
+```graphql
+
+```
+
+Updates a ProductCategory:
 
 ```graphql
 
@@ -254,13 +266,7 @@ Deletes a Product:
 
 ```
 
-Change ProductCategory:
-
-```graphql
-
-```
-
-Change Warehouse:
+Updates a Product:
 
 ```graphql
 
