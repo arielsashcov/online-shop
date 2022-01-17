@@ -8,9 +8,9 @@ This document is divided in three sections :
 
 [Information](#information)
 
-[Click here for the Sample GraphQL Queries](#sample-graphql-queries)
+[Sample GraphQL Queries](#sample-graphql-queries)
 
-[Click here for the Model Architecture Overview](#model-architecture)
+[Model Architecture Overview](#model-architecture)
 
 ## Information
 
