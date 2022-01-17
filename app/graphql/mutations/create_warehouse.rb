@@ -19,7 +19,7 @@ module Mutations
       else
         {
           warehouse: nil,
-          errors: product_category.errors.full_messages
+          errors: warehouse.errors.full_messages
         }
       end
     end

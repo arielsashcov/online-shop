@@ -114,7 +114,7 @@ mutation {
 }
 ```
 
-#### Warehouse list, creation & deletion
+#### Warehouse list, creation & update
 
 Creates a new Warehouse:
 
@@ -135,16 +135,26 @@ mutation {
 }
 ```
 
-Deletes a Warehouse:
-
-```graphql
-
-```
-
 Updates a Warehouse:
 
 ```graphql
-
+mutation {
+  updateWarehouse(
+    input: {
+      id: 1
+      name: "Sunnyside Storage"
+      description: "New materials warehouse"
+    }
+  ) {
+    success
+    errors
+    warehouse {
+      id
+      name
+      description
+    }
+  }
+}
 ```
 
 Get all warehouses, products and productCount:
@@ -175,7 +185,7 @@ query {
 }
 ```
 
-#### ProductCategory list, creation & deletion
+#### ProductCategory list, creation & update
 
 Creates a new ProductCategory:
 
@@ -191,12 +201,6 @@ mutation {
     }
   }
 }
-```
-
-Deletes a ProductCategory:
-
-```graphql
-
 ```
 
 Updates a ProductCategory:
@@ -237,7 +241,7 @@ query {
 }
 ```
 
-#### Product list, creation, deletion & association
+#### Product list, creation & update
 
 Creates a new Product:
 
@@ -258,12 +262,6 @@ mutation {
     }
   }
 }
-```
-
-Deletes a Product:
-
-```graphql
-
 ```
 
 Updates a Product:

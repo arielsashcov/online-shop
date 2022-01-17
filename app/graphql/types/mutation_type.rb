@@ -1,5 +1,6 @@
 module Types
   class MutationType < Types::BaseObject
+    field :update_warehouse, mutation: Mutations::UpdateWarehouse
     field :create_warehouse, mutation: Mutations::CreateWarehouse
     field :signin_user, mutation: Mutations::SignInUser
     field :create_user, mutation: Mutations::CreateUser
