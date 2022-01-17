@@ -32,7 +32,7 @@ This document is divided in three sections :
 - Database creation & initialization
 
   - `sudo service mysql restart`
-  - `rake db:create`
+  - `rake db:create db:migrate`
   - `rake db:reset db:seed`
 
 - How to run the test suite
@@ -51,16 +51,19 @@ This document is divided in three sections :
     - `rails g model Warehouse name email password_digest`
     - `rails g graphql:object WarehouseType id:ID! name:String! email:String!`
     - `rails g graphql:mutation CreateWarehouse`
+    - `rails g graphql:mutation UpdateWarehouse`
     - `rails db:migrate`
     - ProductCategory
       - `rails g model ProductCategory name:string description:string`
       - `rails g graphql:object product_category`
       - `rails g graphql:mutation CreateProductCategoryMutation`
+      - `rails g graphql:mutation UpdateProductCategory`
       - `rails db:migrate`
     - Product
       - `rails g model Product product_category:belongs_to name:string description:string`
       - `rails g graphql:object product`
       - `rails g graphql:mutation CreateProductMutation`
+      - `rails g graphql:mutation UpdateProduct`
       - `rails db:migrate`
     - User
       - `rails g model User name email password_digest`
@@ -198,6 +201,8 @@ mutation {
       id
       name
       description
+      updatedAt
+      createdAt
     }
   }
 }
@@ -206,7 +211,23 @@ mutation {
 Updates a ProductCategory:
 
 ```graphql
-
+mutation {
+  updateProductCategory(
+    input: {
+      id: 1
+      name: "Hair Cutting Shears"
+      description: "Barber shears and hairdressing shears"
+    }
+  ) {
+    success
+    errors
+    productCategory {
+      id
+      name
+      description
+    }
+  }
+}
 ```
 
 Get all ProductCategory and their products:
@@ -221,6 +242,8 @@ query {
       id
       name
       description
+      price
+      quantity
     }
   }
 }
@@ -253,12 +276,17 @@ mutation {
       description: "The Texpert Collective"
       productCategoryId: 1
       warehouseId: 1
+      price: 875.00
+      quantity: 30
     }
   ) {
     product {
       id
       name
       description
+      price
+      quantity
+      updatedAt
     }
   }
 }
@@ -267,7 +295,31 @@ mutation {
 Updates a Product:
 
 ```graphql
-
+mutation {
+  updateProduct(
+    input: {
+      id: 1
+      name: "Phantom II"
+      description: "Arc Scissors"
+      productCategoryId: 1
+      warehouseId: 1
+      price: 860.00
+      quantity: 25
+    }
+  ) {
+    success
+    errors
+    product {
+      id
+      name
+      description
+      productCategoryId
+      warehouseId
+      price
+      quantity
+    }
+  }
+}
 ```
 
 Get all ProductCategory and their products:
