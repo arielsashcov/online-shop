@@ -37,38 +37,6 @@ This document is divided in two sections :
 
   - `rails test`
 
-- Commands
-
-  - Updates
-    - `gem update --system`
-  - Installing GraphQL
-    - `rails g graphql:install`
-    - `bundle install`
-  - Adding new models & GraphQL objects/mutations
-    - Warehouse
-    - `rails g model Warehouse name email password_digest`
-    - `rails g graphql:object WarehouseType id:ID! name:String! email:String!`
-    - `rails g graphql:mutation CreateWarehouse`
-    - `rails g graphql:mutation UpdateWarehouse`
-    - `rails db:migrate`
-    - ProductCategory
-      - `rails g model ProductCategory name:string description:string`
-      - `rails g graphql:object product_category`
-      - `rails g graphql:mutation CreateProductCategoryMutation`
-      - `rails g graphql:mutation UpdateProductCategory`
-      - `rails db:migrate`
-    - Product
-      - `rails g model Product product_category:belongs_to name:string description:string`
-      - `rails g graphql:object product`
-      - `rails g graphql:mutation CreateProductMutation`
-      - `rails g graphql:mutation UpdateProduct`
-      - `rails db:migrate`
-    - User
-      - `rails g model User name email password_digest`
-      - `rails g graphql:object UserType id:ID! name:String! email:String!`
-      - `rails g graphql:mutation CreateUser`
-      - `rails db:migrate`
-
 ## Sample GraphQL Queries
 
 ### Navigate to /graphiql to try them out!
