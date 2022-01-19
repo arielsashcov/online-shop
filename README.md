@@ -4,13 +4,11 @@ This is my attempt of the [Shopify Backend Developer Intern Challenge - Summer 2
 
 In this README you will find all technical documentation including features and how to query the mysql database via graphql.
 
-This document is divided in three sections :
+This document is divided in two sections :
 
 [Information](#information)
 
 [Sample GraphQL Queries](#sample-graphql-queries)
-
-[Model Architecture Overview](#model-architecture)
 
 ## Information
 
@@ -344,5 +342,3 @@ query {
   }
 }
 ```
-
-## Model Architecture
