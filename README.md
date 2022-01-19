@@ -30,8 +30,8 @@ This document is divided in two sections :
 - Database creation & initialization
 
   - `sudo service mysql restart`
-  - `rake db:create db:migrate`
-  - `rake db:reset db:seed`
+  - `rake db:create db:migrate db:seed`
+  - `rake db:reset db:seed` (optional: to reset database)
 
 - How to run the test suite
 
