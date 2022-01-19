@@ -37,6 +37,10 @@ This document is divided in two sections :
 
   - `rails test`
 
+- How to run the app
+
+  - `rails s`
+
 ## Sample GraphQL Queries
 
 ### Navigate to /graphiql to try them out!
